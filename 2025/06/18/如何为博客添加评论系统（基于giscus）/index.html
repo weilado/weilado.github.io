@@ -20,25 +20,40 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":"ture","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Je n&#39;oublierai jamais la promesse que vous m&#39;avez faite. Je vous prie de conserver pour toujours votre amour pour moi, de penser à moi et de vous souvenir de moi.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="栞的图书馆">
-<meta property="og:url" content="http://example.com/source/index.md/index.html">
+    <meta name="description" content="如何为博客添加评论系统（基于giscus）介绍Giscus 是一个基于 GitHub Discussions 的开源评论系统，适用于博客、文档网站等静态网站。它能让读者通过 GitHub 账号发表评论，评论内容将同步保存到GitHub 仓库中。最重要的是它开源免费，方便配置。 在参照了网上众多教程后最终成功进行了配置（个人是基于hexo+next主题,我相信在其它的主题中也大差不差），写下这篇文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何为博客添加评论系统（基于giscus）">
+<meta property="og:url" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/index.html">
 <meta property="og:site_name" content="栞的图书馆">
-<meta property="og:description" content="Je n&#39;oublierai jamais la promesse que vous m&#39;avez faite. Je vous prie de conserver pour toujours votre amour pour moi, de penser à moi et de vous souvenir de moi.">
+<meta property="og:description" content="如何为博客添加评论系统（基于giscus）介绍Giscus 是一个基于 GitHub Discussions 的开源评论系统，适用于博客、文档网站等静态网站。它能让读者通过 GitHub 账号发表评论，评论内容将同步保存到GitHub 仓库中。最重要的是它开源免费，方便配置。 在参照了网上众多教程后最终成功进行了配置（个人是基于hexo+next主题,我相信在其它的主题中也大差不差），写下这篇文章">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201638779.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201728739.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201753428.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201115009.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201417082.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202325693.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202601306.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202906985.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618203434006.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618204511664.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618204629894.png">
+<meta property="og:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/61335779.jpg">
+<meta property="article:published_time" content="2025-06-18T11:48:50.000Z">
+<meta property="article:modified_time" content="2025-06-18T13:52:26.232Z">
 <meta property="article:author" content="weilado">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201638779.png">
 
 
-<link rel="canonical" href="http://example.com/source/index.md/">
+<link rel="canonical" href="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"source/index.md/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/","path":"2025/06/18/如何为博客添加评论系统（基于giscus）/","title":"如何为博客添加评论系统（基于giscus）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>栞的图书馆</title>
+<title>如何为博客添加评论系统（基于giscus） | 栞的图书馆</title>
   
 
 
@@ -92,7 +107,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">栞的图书馆</h1>
+      <p class="site-title">栞的图书馆</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">留住回忆</p>
@@ -146,7 +161,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -159,6 +174,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">如何为博客添加评论系统（基于giscus）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8github%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84"><span class="nav-number">1.2.</span> <span class="nav-text">在github页面需要做的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E4%B8%AD%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84"><span class="nav-number">1.3.</span> <span class="nav-text">在博客文件中需要做的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">优化：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,16 +216,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,13 +240,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 栞的图书馆">
+      <meta itemprop="name" content="如何为博客添加评论系统（基于giscus） | 栞的图书馆">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/" class="post-title-link" itemprop="url">如何为博客添加评论系统（基于giscus）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          如何为博客添加评论系统（基于giscus）
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -253,6 +270,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -261,8 +285,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="如何为博客添加评论系统（基于giscus）"><a href="#如何为博客添加评论系统（基于giscus）" class="headerlink" title="如何为博客添加评论系统（基于giscus）"></a>如何为博客添加评论系统（基于giscus）</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>Giscus</strong> 是一个基于 <strong>GitHub Discussions</strong> 的开源评论系统，适用于博客、文档网站等静态网站。它能让读者通过 GitHub 账号发表评论，评论内容将同步保存到GitHub 仓库中。最重要的是它<strong>开源免费，方便配置</strong>。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="如何为博客添加评论系统（基于giscus）"><a href="#如何为博客添加评论系统（基于giscus）" class="headerlink" title="如何为博客添加评论系统（基于giscus）"></a>如何为博客添加评论系统（基于giscus）</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>Giscus</strong> 是一个基于 <strong>GitHub Discussions</strong> 的开源评论系统，适用于博客、文档网站等静态网站。它能让读者通过 GitHub 账号发表评论，评论内容将同步保存到GitHub 仓库中。最重要的是它<strong>开源免费，方便配置</strong>。</p>
 <p>在参照了网上众多教程后最终成功进行了配置（个人是基于hexo+next主题,我相信在其它的主题中也大差不差），写下这篇文章用于记录，希望能够帮助到别人。</p>
 <h2 id="在github页面需要做的"><a href="#在github页面需要做的" class="headerlink" title="在github页面需要做的"></a>在github页面需要做的</h2><ul>
 <li><p>首先在个人博客的仓库中将<code>discussions</code>打开</p>
@@ -315,7 +338,6 @@
 </li>
 </ul>
 
-      
     </div>
 
     
@@ -323,110 +345,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
+        
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/06/16/%E5%80%9F%E9%B8%A1%E7%94%9F%E8%9B%8B-%E7%94%A8%E6%9C%AA%E6%9D%A5%E7%9A%84%E9%92%B1%E8%B5%9A%E9%92%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/%E6%A0%9E.jpg">
-      <meta itemprop="name" content="weilado">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="栞的图书馆">
-      <meta itemprop="description" content="Je n'oublierai jamais la promesse que vous m'avez faite. Je vous prie de conserver pour toujours votre amour pour moi, de penser à moi et de vous souvenir de moi.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 栞的图书馆">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/06/16/%E5%80%9F%E9%B8%A1%E7%94%9F%E8%9B%8B-%E7%94%A8%E6%9C%AA%E6%9D%A5%E7%9A%84%E9%92%B1%E8%B5%9A%E9%92%B1/" class="post-title-link" itemprop="url">借鸡生蛋--用未来的钱赚钱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-06-16 20:27:45" itemprop="dateCreated datePublished" datetime="2025-06-16T20:27:45+08:00">2025-06-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-06-18 21:47:28" itemprop="dateModified" datetime="2025-06-18T21:47:28+08:00">2025-06-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%B4%A2%E7%BB%8F%E5%B0%8F%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">财经小随笔</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="借鸡生蛋–用未来的钱赚钱"><a href="#借鸡生蛋–用未来的钱赚钱" class="headerlink" title="借鸡生蛋–用未来的钱赚钱"></a>借鸡生蛋–用未来的钱赚钱</h1><p>本篇文章基于该视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18Xd3YaE44">https://www.bilibili.com/video/BV18Xd3YaE44</a></p>
-<p>是这篇文章的个人翻译，并进行了大幅简化。</p>
-<p>这个视频的逻辑可以简单的理解为：<strong>用未来的钱赚钱。</strong></p>
-<h2 id="例子详解"><a href="#例子详解" class="headerlink" title="例子详解"></a>例子详解</h2><p>1.知名地产地产公司<strong>A大：</strong></p>
-<ul>
-<li><p>账户里有<strong>9亿元可支配现金</strong>。</p>
-</li>
-<li><p>一笔未来才能收到的钱（之前所售楼盘的尾款，这部分钱极其稳定，但坏就坏在它是一笔未来才能拿到的钱），这里我们假设这笔钱有<strong>11亿元</strong>之多，要<strong>12个月</strong>才能到账。</p>
-</li>
-</ul>
-<p>2.<strong>A大</strong>找了一家<strong>基金公司B</strong>，说这笔款的<strong>收款码给你们了，你现在给我10亿元现金就好。<strong>基金公司宣传该基金产品，说年投资回报率高达</strong>5%</strong>，随后它募集了<strong>10亿元</strong>现金，年底支付给客户<strong>10.05亿元</strong>，自己<strong>留0.95亿元</strong>。</p>
-<p>3.而<strong>A大</strong>拿到这笔钱找到房地产小公司<strong>C大</strong>，说借他款:<strong>9（A)：11（C)<strong>分成一起合作开发楼盘，说它新弄的</strong>楼盘回报率为300%</strong>，你<strong>投11亿元，5年后，会得33亿元</strong>，现在没钱我可以借给你，<strong>年利率20%</strong>，没有资质，我来盖（此处假设盖房成本很低，因为投资大头在于买地皮）。而C答应了，这时候，<strong>原本应该乖乖在账上等12个月才能得到的11亿元，最终却无风险的变成了11亿元的本金+接下来连续5年2.2亿元的利息</strong>。这样看，A大，C大，投资者，基金公司B都赚到了钱，皆大欢喜。（当然一切的基础都建立在那超高的楼市回报率上）。</p>
-<h2 id="A大的优势："><a href="#A大的优势：" class="headerlink" title="A大的优势："></a>A大的优势：</h2><p>A大账户里这笔未来才能收到的钱收不上来了，投资者的基金飘绿了，但是投资者只会找基金公司，找不到A大头上。</p>
-<p>A大也可以拿这笔钱自己单干去投资楼盘。</p>
-<p>楼盘回报率低了，不景气。那么就借口多盖几年，多收点利息。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>  个人纯粹是个平时爱刷财经视频的小白，之前看了这个视频没看懂，现在多看了几遍有了一些感想就分享出来，就算是不辜负我之前看视频的那点时间吧。</p>
-<p><img src="/2025/06/16/%E5%80%9F%E9%B8%A1%E7%94%9F%E8%9B%8B-%E7%94%A8%E6%9C%AA%E6%9D%A5%E7%9A%84%E9%92%B1%E8%B5%9A%E9%92%B1/R.png" alt="后记随图-忽那樱"></p>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/16/%E5%80%9F%E9%B8%A1%E7%94%9F%E8%9B%8B-%E7%94%A8%E6%9C%AA%E6%9D%A5%E7%9A%84%E9%92%B1%E8%B5%9A%E9%92%B1/" rel="prev" title="借鸡生蛋--用未来的钱赚钱">
+                  <i class="fa fa-angle-left"></i> 借鸡生蛋--用未来的钱赚钱
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -435,6 +365,13 @@
 
 
 
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
 
 </div>
   </main>

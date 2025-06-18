@@ -26,4 +26,64 @@
         <category>财经小随笔</category>
       </categories>
   </entry>
+  <entry>
+    <title>如何为博客添加评论系统（基于giscus）</title>
+    <url>/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="如何为博客添加评论系统（基于giscus）"><a href="#如何为博客添加评论系统（基于giscus）" class="headerlink" title="如何为博客添加评论系统（基于giscus）"></a>如何为博客添加评论系统（基于giscus）</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>Giscus</strong> 是一个基于 <strong>GitHub Discussions</strong> 的开源评论系统，适用于博客、文档网站等静态网站。它能让读者通过 GitHub 账号发表评论，评论内容将同步保存到GitHub 仓库中。最重要的是它<strong>开源免费，方便配置</strong>。</p>
+<p>在参照了网上众多教程后最终成功进行了配置（个人是基于hexo+next主题,我相信在其它的主题中也大差不差），写下这篇文章用于记录，希望能够帮助到别人。</p>
+<h2 id="在github页面需要做的"><a href="#在github页面需要做的" class="headerlink" title="在github页面需要做的"></a>在github页面需要做的</h2><ul>
+<li><p>首先在个人博客的仓库中将<code>discussions</code>打开</p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201638779.png" alt="image-20250618201638779"></p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201728739.png" alt="image-20250618201728739"></p>
+<ul>
+<li>同时需要确保要用于存储评论数据的库是公开的</li>
+</ul>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201753428.png" alt="image-20250618201753428"></p>
+</li>
+<li><p>在github中安装<a href="https://github.com/apps/giscus">giscus APP</a>，随后点击图示部分进行指定</p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201115009.png" alt="image-20250618201115009"></p>
+</li>
+<li><p>之后可以指定令其适用于哪些仓库，存放评论的仓库与搭建网站的仓库不是必须相同的。前者必须是 Public 的仓库（否则网站访客就无法看到评论信息），但后者可以是 Private 的仓库。当然，这两者也可以是同一仓库。</p>
+<ul>
+<li>博主这里选择令其适用于我的个人博客仓库（所有之前的图片中，我的个人仓库是公开的）。</li>
+</ul>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618201417082.png" alt="image-20250618201417082"></p>
+</li>
+<li><p>随后点击该链接进行<a href="https://giscus.app/zh-CN">giscus配置</a></p>
+<ul>
+<li>将之前所指定的仓库的链接粘入</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202325693.png" alt="image-20250618202325693"></p>
+<p>在相关设置完成后，临时找个记事本将网页给出的代码粘入，之后有用，这里称为<strong>代码1</strong></p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202601306.png" alt="image-20250618202601306"></p>
+<ul>
+<li>复制 <a href="https://github.com/next-theme/hexo-next-giscus">hexo-next-giscus</a> 项目 Readme 中 Configure 部分的代码块到刚才提到的记事本中，这里称为<strong>代码2</strong></li>
+</ul>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618202906985.png" alt="image-20250618202906985"></p>
+<h2 id="在博客文件中需要做的"><a href="#在博客文件中需要做的" class="headerlink" title="在博客文件中需要做的"></a>在博客文件中需要做的</h2><ul>
+<li><p>在博客目录中打开命令行执行以下命令，安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-next-giscus</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将<strong>代码2</strong>与<strong>代码1</strong>进行比较，<strong>针对代码2中注释的提示，参照代码1进行修改</strong>，改好后将<strong>代码块2</strong>放到你_config.next.yml（next的主题配置文件） 中，同时 设置 <code>comments.active</code>为<code>giscus</code></p>
+</li>
+</ul>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618203434006.png" alt="image-20250618203434006"></p>
+<ul>
+<li><p>随后找到博客生成模板的目录（.&#x2F; <a href="....%5Cscaffolds">scaffolds</a> ）,在其中找到<code>post.md</code>,打开后将<strong>代码1</strong>粘到文件最后，这样之后生成的博客都是有评论的，之前没评论的，也可以将<strong>代码1</strong>粘到最后，也会出现评论</p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618204511664.png" alt="image-20250618204511664"></p>
+<h3 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h3><p>如果想要自由控制是否添加评论，可以在上面的配置选项中加入<code>comment: ture</code>的选项，以后想取消某篇文章的评论，在该文章中将<code>comment: ture</code>改为<code>comment: false</code>即可</p>
+<p>同时，将原本粘贴的<strong>代码1</strong>改为如下格式即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.comments and theme.comments.giscus and theme.comments.giscus.enable %&#125;</span><br><span class="line">  代码1</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/image-20250618204629894.png" alt="image-20250618204629894"></p>
+<p><img src="/2025/06/18/%E5%A6%82%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9F%BA%E4%BA%8Egiscus%EF%BC%89/61335779.jpg" alt="路易丝"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+  </entry>
 </search>
